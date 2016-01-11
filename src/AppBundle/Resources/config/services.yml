@@ -1,0 +1,17 @@
+parameters:
+  entity.product: "AppBundle:Product"
+
+services:
+  repository.product:
+    class: AppBundle\Repository\ProductRepository
+    factory: ["@doctrine", getRepository]
+    arguments:
+      - %entity.product%
+
+  data_provider.product:
+    class:      AppBundle\DataProvider\ProductDataProvider
+    arguments:  ['@repository.product']
+
+  model.cart_log:
+    class:      AppBundle\Model\CartLogModel
+    arguments:  ['@doctrine.orm.entity_manager']

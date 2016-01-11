@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# @todo move CSS to assets #}
+    <style type="text/css">
+        input {display: block; float: left; clear: both;}
+        label {display: block; float: left;}
+        button {display: block; float: left; clear: both;}
+    </style>
+
+    <h3>My shopping cart (<a href="{{ url('clearCart') }}">empty the cart):</a></h3>
+
+    <ul>
+    {% for product in productsInCart %}
+        <li>{{ product }}</li>
+    {% endfor %}
+    </ul>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}
